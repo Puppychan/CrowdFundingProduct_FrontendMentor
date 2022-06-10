@@ -1,0 +1,76 @@
+@use "variables.scss" as var;
+@use "mixins.scss" as mi;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    font-family: 'Commissioner', sans-serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2em 0;
+        // width: 100%;
+        width: 90%;
+
+        &::after {
+            content: " ";
+            @include mi.absolute(0, auto, 0, 0);
+            z-index: -1;
+            height: 100vh;
+
+            background: linear-gradient(-180deg, var.$black, #fff);
+            opacity: 0.3;
+        }
+        &-img {
+            @include mi.absolute(0, auto, 0);
+            z-index: -1;
+            width: 100%;
+            object-fit: contain;
+            source, img {
+                width: 100%;
+            }
+        }
+        &-logo {
+            // width: 50%;
+            width: min(50%, 11.5em);
+        }
+        &-menuicon {
+            width: min(8%, 2.2em);
+            object-fit: contain;
+        }
+        &-list {
+            display: flex;
+            flex-direction: column;
+            width: 90%;
+            @include mi.absolute(7em);
+
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            &-link {
+                padding: 2.3em 2em;
+                border-bottom: 1px solid var.$dark-gray;
+                text-decoration: none;
+                color: var.$black;
+                font-weight: 500;
+                &:last-of-type {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width: 1440px){
+    .header {
+        &-menuicon {
+            display: none;
+        }
+    }
+}

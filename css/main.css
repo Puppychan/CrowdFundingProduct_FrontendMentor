@@ -1,0 +1,84 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Commissioner", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+body .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 0;
+  width: 90%;
+}
+body .header::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100vh;
+  background: linear-gradient(-180deg, hsl(0deg, 0%, 0%), #fff);
+  opacity: 0.3;
+}
+body .header-img {
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: auto;
+  z-index: -1;
+  width: 100%;
+  object-fit: contain;
+}
+body .header-img source, body .header-img img {
+  width: 100%;
+}
+body .header-logo {
+  width: min(50%, 11.5em);
+}
+body .header-menuicon {
+  width: min(8%, 2.2em);
+  object-fit: contain;
+}
+body .header-list {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  position: absolute;
+  top: 7em;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+body .header-list-link {
+  padding: 2.3em 2em;
+  border-bottom: 1px solid hsl(0deg, 0%, 48%);
+  text-decoration: none;
+  color: hsl(0deg, 0%, 0%);
+  font-weight: 500;
+}
+body .header-list-link:last-of-type {
+  border-bottom: none;
+}
+
+@media screen and (min-width: 1440px) {
+  .header-menuicon {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
