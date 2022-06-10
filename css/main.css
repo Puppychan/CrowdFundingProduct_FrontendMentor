@@ -9,6 +9,7 @@ html {
 }
 
 body {
+  background-color: rgb(237, 237, 237);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,7 +88,7 @@ body .main {
 body .main-intro {
   width: 100%;
   background-color: white;
-  padding: 1.5em 1em;
+  padding: 4em 1.7em;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -95,14 +96,18 @@ body .main-intro {
   align-items: center;
   text-align: center;
   gap: 1.3em;
+  position: relative;
 }
 body .main-intro-icon {
-  width: 14%;
+  position: absolute;
+  top: -2em;
+  width: min(17%, 4.2em);
 }
 body .main-intro-title {
   word-spacing: 2px;
   font-weight: 700;
   font-size: 1.5rem;
+  color: hsl(0deg, 0%, 0%);
 }
 body .main-intro-desc {
   color: hsl(0deg, 0%, 48%);
@@ -122,28 +127,39 @@ body .main-intro-buttons-back {
   font-weight: 700;
   color: white;
   border: none;
+  max-width: 20em;
 }
 body .main-intro-buttons-back:hover {
   background-color: hsl(176deg, 72%, 28%);
   cursor: pointer;
 }
 body .main-intro-buttons-bookmark {
-  width: 20%;
+  width: 17%;
   padding: 1vw;
   border-radius: 12vw;
-  background-color: hsl(176deg, 50%, 47%);
+  background-color: transparent;
   font-weight: 700;
-  color: white;
+  color: hsl(0deg, 0%, 48%);
   border: none;
   padding: 0;
-  background-color: transparent;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 body .main-intro-buttons-bookmark:hover {
-  background-color: hsl(176deg, 72%, 28%);
   cursor: pointer;
 }
-body .main-intro-buttons-bookmark-icon {
-  width: 100%;
+body .main-intro-buttons-bookmark span {
+  display: none;
+}
+body .main-intro-buttons-bookmark.tick svg circle {
+  fill: hsl(176deg, 72%, 28%);
+}
+body .main-intro-buttons-bookmark.tick svg path {
+  fill: white;
+}
+body .main-intro-buttons-bookmark.tick span {
+  color: hsl(176deg, 72%, 28%);
 }
 
 @media screen and (min-width: 1440px) {
@@ -176,6 +192,30 @@ body .main-intro-buttons-bookmark-icon {
     padding: 0;
     border: none;
     color: white;
+  }
+  body .main {
+    width: 55%;
+    margin-top: 10vw;
+  }
+  body .main-intro-buttons-back {
+    padding: 1.4vw;
+    max-width: 17em;
+  }
+  body .main-intro-buttons-bookmark {
+    background-color: rgb(216, 214, 214);
+    padding: 1.4vw;
+    width: 24%;
+    position: relative;
+  }
+  body .main-intro-buttons-bookmark-icon {
+    position: absolute;
+    left: 0.06em;
+  }
+  body .main-intro-buttons-bookmark span {
+    display: inline;
+  }
+  body .main-intro-buttons-bookmark.tick {
+    background-color: hsl(175deg, 40%, 88%);
   }
 }
 

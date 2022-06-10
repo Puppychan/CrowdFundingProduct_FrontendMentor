@@ -15,7 +15,7 @@
 }
 @mixin style-card($position) {
     background-color: white;
-    padding: 1.5em 1em;
+    padding: 4em 1.7em;
     border-radius: 15px;
 
     display: flex;
@@ -29,18 +29,24 @@
     //     align-items: flex-start;
     // }
 }
-@mixin style-button($width) {
+@mixin style-button($width, 
+    $background-color: var.$clr-bck-main-button, $color: var.$clr-txt-main-button) {
     width: $width;
     // padding: 1.4em;
-    padding: 1vw;
+    padding: var.$padding-button-mobile;
     border-radius: 12vw;
+    // height: 3.8em;
 
-    background-color: var.$moderate-cyan;
+    background-color: $background-color;
     font-weight: 700;
-    color: white;
+    color: $color;
     border: none;
     &:hover {
-        background-color: var.$dark-cyan;
+        @if $background-color == var.$clr-bck-main-button {
+            background-color: var.$clr-bck-hover-main-button;
+            
+        }
         cursor: pointer;
+        // color: $color-hover;
     }
 }

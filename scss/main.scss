@@ -9,6 +9,7 @@ html {
     font-family: 'Commissioner', sans-serif;
 }
 body {
+    background-color: rgb(237, 237, 237);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,7 +25,7 @@ body {
             @include mi.absolute(0, auto, 0, 0, -1);
             height: 100vh;
 
-            background: linear-gradient(-180deg, var.$black, #fff);
+            background: linear-gradient(-180deg, var.$clr-txt-main, #fff);
             opacity: 0.5;
         }
         &-img {
@@ -56,7 +57,7 @@ body {
                 padding: 1.7em 1.2em;
                 text-decoration: none;
                 border-bottom: 1.2px solid #ccc;
-                color: var.$black;
+                color: var.$clr-txt-main;
                 font-weight: 500;
                 &:last-of-type {
                     border-bottom: none;
@@ -75,16 +76,20 @@ body {
             width: 100%;
             @include mi.style-card("center");
             gap: 1.3em;
+            position: relative;
             &-icon {
-                width: 14%;
+                position: absolute;
+                top: -2em;
+                width: min(17%, 4.2em);
             }
             &-title {
                 word-spacing: 2px;
                 font-weight: 700;
                 font-size: 1.5rem;
+                color: var.$clr-txt-main;
             }
             &-desc {
-                color: var.$dark-gray;
+                color: var.$clr-txt-desc;
                 font-size: 0.9rem;
                 line-height: 1.8;
             }
@@ -94,15 +99,30 @@ body {
                 width: 100%;
                 &-back {
                     @include mi.style-button(75%);
+                    max-width: 20em;
                 }
                 &-bookmark {
-                    @include mi.style-button(20%);
+                    @include mi.style-button(17%, transparent, var.$clr-txt-bookmark-button);
                     padding: 0;
-                    background-color: transparent;
-                    &-icon {
-                        width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    & span {
+                        display: none;
                     }
-
+                    &.tick {
+                        & svg {
+                            & circle {
+                                fill: var.$clr-bck-hover-bookmark-icon-button;
+                            }
+                            & path {
+                                fill: var.$clr-bck-hover-bookmark-iconpath-button;
+                            }
+                        }
+                        & span {
+                            color: var.$clr-txt-hover-bookmark-button;
+                        }
+                    }
                 }
             }
         }
@@ -156,7 +176,33 @@ body {
             }
         }
         .main {
-            // margin-top: 100em;
+            width: 55%;
+            margin-top: 10vw;
+            &-intro {
+                &-buttons {
+                    &-back {
+                        padding: var.$padding-button-desktop;
+                        max-width: 17em;
+                    }
+                    &-bookmark {
+                        background-color: var.$clr-bck-bookmark-button;
+                        padding: var.$padding-button-desktop;
+                        width: 24%;
+                        
+                        position: relative;
+                        &-icon {
+                            position: absolute;
+                            left: 0.06em;
+                        }
+                        & span {
+                            display: inline;
+                        }
+                        &.tick {
+                            background-color: var.$clr-bck-hover-bookmark-button;
+                        }
+                    }
+                }
+            }
         }
     }
 }

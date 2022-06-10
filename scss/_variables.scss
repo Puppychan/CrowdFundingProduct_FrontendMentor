@@ -1,6 +1,18 @@
-$moderate-cyan: hsl(176, 50%, 47%);
-$dark-cyan: hsl(176, 72%, 28%);
-$black: hsl(0, 0%, 0%);
-$dark-gray: hsl(0, 0%, 48%);
+$clr-bck-main-button: hsl(176, 50%, 47%);
+$clr-txt-main-button: white;
+$clr-bck-hover-main-button: hsl(176, 72%, 28%);
+// bookmark
+$clr-bck-bookmark-button: rgb(216, 214, 214);
+$clr-txt-bookmark-button: hsl(0, 0%, 48%);
+$clr-bck-hover-bookmark-icon-button: hsl(176, 72%, 28%);
+$clr-bck-hover-bookmark-iconpath-button: white;
+$clr-bck-hover-bookmark-button: hsl(175, 40%, 88%);
+$clr-txt-hover-bookmark-button: hsl(176, 72%, 28%);
+// text
+$clr-txt-main: hsl(0, 0%, 0%);
+$clr-txt-desc:  hsl(0, 0%, 48%);
 
 $padding-mobile-hori: 2em;
+$padding-button-desktop: 1.4vw;
+$padding-button-mobile: 1vw;
+
