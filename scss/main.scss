@@ -10,35 +10,32 @@ html {
 }
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 2em 0;
-        // width: 100%;
         width: 90%;
-
+        // background: url("../images/image-hero-mobile.jpg") center/ contain no-repeat;
         &.open::after {
             content: " ";
-            @include mi.absolute(0, auto, 0, 0);
-            z-index: -1;
+            @include mi.absolute(0, auto, 0, 0, -1);
             height: 100vh;
 
             background: linear-gradient(-180deg, var.$black, #fff);
             opacity: 0.5;
         }
         &-img {
-            @include mi.absolute(0, auto, 0);
-            z-index: -1;
+            @include mi.absolute(0, auto, 0, auto, -1);
             width: 100%;
-            object-fit: contain;
             source, img {
+                object-fit: contain;
                 width: 100%;
             }
         }
         &-logo {
-            // width: 50%;
             width: min(50%, 11.5em);
         }
         &-menuicon {
@@ -70,7 +67,61 @@ body {
             display: flex;
         }
     }
+    .main {
+        // margin-top: 50vw;
+        margin-top: 30vw;
+        width: 90%;
+        &-intro {
+            width: 100%;
+            @include mi.style-card("center");
+            gap: 1.3em;
+            &-icon {
+                width: 14%;
+            }
+            &-title {
+                word-spacing: 2px;
+                font-weight: 700;
+                font-size: 1.5rem;
+            }
+            &-desc {
+                color: var.$dark-gray;
+                font-size: 0.9rem;
+                line-height: 1.8;
+            }
+            &-buttons {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                &-back {
+                    @include mi.style-button(75%);
+                }
+                &-bookmark {
+                    @include mi.style-button(20%);
+                    padding: 0;
+                    background-color: transparent;
+                    &-icon {
+                        width: 100%;
+                    }
+
+                }
+            }
+        }
+
+    }
 }
+// @media screen and (min-width: 700px){
+//     body {
+//         .header {
+//             &-img {
+//                 // height: 30em;
+//                 padding-top: 62.5%;
+//                 & img, & source {
+//                     width: 100%;
+//                 }
+//             }
+//         }
+//     }
+// }
 @media screen and (min-width: 1440px){
     body {
         .header {
@@ -78,6 +129,14 @@ body {
             width: 85%;
             &-menuicon {
                 display: none;
+            }
+            &-img {
+                height: auto;
+                & img, & source {
+                    object-fit: contain;
+                    width: 100%;
+                }
+
             }
             &-list {
                 position: relative;
@@ -95,6 +154,9 @@ body {
                     color: white;
                 }
             }
+        }
+        .main {
+            // margin-top: 100em;
         }
     }
 }

@@ -1,7 +1,46 @@
-@mixin absolute($top: auto, $bottom: auto, $left: auto, $right: auto) {
+@use "variables.scss" as var;
+@mixin absolute($top: auto, $bottom: auto, $left: auto, $right: auto, $z: auto) {
     position: absolute;
     top: $top;
     bottom: $bottom;
     left: $left;
     right: $right;
+    z-index: $z;
+}
+@mixin flex-center($gap: 0) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $gap;
+}
+@mixin style-card($position) {
+    background-color: white;
+    padding: 1.5em 1em;
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @if $position == "center" {
+        text-align: center;
+    }
+    // @else {
+    //     align-items: flex-start;
+    // }
+}
+@mixin style-button($width) {
+    width: $width;
+    // padding: 1.4em;
+    padding: 1vw;
+    border-radius: 12vw;
+
+    background-color: var.$moderate-cyan;
+    font-weight: 700;
+    color: white;
+    border: none;
+    &:hover {
+        background-color: var.$dark-cyan;
+        cursor: pointer;
+    }
 }

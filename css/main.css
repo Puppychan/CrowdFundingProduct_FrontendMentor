@@ -10,7 +10,8 @@ html {
 
 body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 body .header {
   display: flex;
@@ -39,9 +40,9 @@ body .header-img {
   right: auto;
   z-index: -1;
   width: 100%;
-  object-fit: contain;
 }
 body .header-img source, body .header-img img {
+  object-fit: contain;
   width: 100%;
 }
 body .header-logo {
@@ -60,6 +61,7 @@ body .header-list {
   bottom: auto;
   left: auto;
   right: auto;
+  z-index: auto;
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
@@ -78,6 +80,71 @@ body .header-list-link:last-of-type {
 body .header.open .header-list {
   display: flex;
 }
+body .main {
+  margin-top: 30vw;
+  width: 90%;
+}
+body .main-intro {
+  width: 100%;
+  background-color: white;
+  padding: 1.5em 1em;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1.3em;
+}
+body .main-intro-icon {
+  width: 14%;
+}
+body .main-intro-title {
+  word-spacing: 2px;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+body .main-intro-desc {
+  color: hsl(0deg, 0%, 48%);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+body .main-intro-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+body .main-intro-buttons-back {
+  width: 75%;
+  padding: 1vw;
+  border-radius: 12vw;
+  background-color: hsl(176deg, 50%, 47%);
+  font-weight: 700;
+  color: white;
+  border: none;
+}
+body .main-intro-buttons-back:hover {
+  background-color: hsl(176deg, 72%, 28%);
+  cursor: pointer;
+}
+body .main-intro-buttons-bookmark {
+  width: 20%;
+  padding: 1vw;
+  border-radius: 12vw;
+  background-color: hsl(176deg, 50%, 47%);
+  font-weight: 700;
+  color: white;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+body .main-intro-buttons-bookmark:hover {
+  background-color: hsl(176deg, 72%, 28%);
+  cursor: pointer;
+}
+body .main-intro-buttons-bookmark-icon {
+  width: 100%;
+}
 
 @media screen and (min-width: 1440px) {
   body .header {
@@ -86,6 +153,13 @@ body .header.open .header-list {
   }
   body .header-menuicon {
     display: none;
+  }
+  body .header-img {
+    height: auto;
+  }
+  body .header-img img, body .header-img source {
+    object-fit: contain;
+    width: 100%;
   }
   body .header-list {
     position: relative;
