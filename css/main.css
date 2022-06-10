@@ -84,18 +84,21 @@ body .header.open .header-list {
 body .main {
   margin-top: 30vw;
   width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
 }
 body .main-intro {
-  width: 100%;
   background-color: white;
   padding: 4em 1.7em;
   border-radius: 15px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
   gap: 1.3em;
+  text-align: center;
   position: relative;
 }
 body .main-intro-icon {
@@ -161,6 +164,47 @@ body .main-intro-buttons-bookmark.tick svg path {
 body .main-intro-buttons-bookmark.tick span {
   color: hsl(176deg, 72%, 28%);
 }
+body .main-graph {
+  background-color: white;
+  padding: 4em 1.7em;
+  border-radius: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  text-align: center;
+}
+body .main-graph > hr {
+  width: 17%;
+  height: 0.1em;
+  border-radius: 10px;
+  border: none;
+  background-color: #ccc;
+}
+body .main-graph > div:not(:last-of-type) {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+body .main-graph-progress {
+  width: 100%;
+  height: 1em;
+  position: relative;
+}
+body .main-graph-progress hr {
+  border: none;
+  height: 100%;
+  border-radius: 15px;
+}
+body .main-graph-progress-done {
+  background-color: hsl(176deg, 50%, 47%);
+  position: absolute;
+}
+body .main-graph-progress-total {
+  background-color: rgb(220, 220, 220);
+}
 
 @media screen and (min-width: 1440px) {
   body .header {
@@ -216,6 +260,20 @@ body .main-intro-buttons-bookmark.tick span {
   }
   body .main-intro-buttons-bookmark.tick {
     background-color: hsl(175deg, 40%, 88%);
+  }
+  body .main-graph {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    flex-wrap: wrap;
+    gap: 3em;
+  }
+  body .main-graph > hr {
+    width: 0.1em;
+    height: 5em;
+  }
+  body .main-graph > div:not(:last-of-type) {
+    width: 24%;
   }
 }
 

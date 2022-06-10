@@ -72,10 +72,11 @@ body {
         // margin-top: 50vw;
         margin-top: 30vw;
         width: 90%;
+        display: flex;
+        flex-direction: column;
+        gap: 3em;
         &-intro {
-            width: 100%;
-            @include mi.style-card("center");
-            gap: 1.3em;
+            @include mi.style-card("center", 1.3em);
             position: relative;
             &-icon {
                 position: absolute;
@@ -123,6 +124,38 @@ body {
                             color: var.$clr-txt-hover-bookmark-button;
                         }
                     }
+                }
+            }
+        }
+        &-graph {
+            @include mi.style-card("center", 2em);
+            & > hr {
+                width: 17%;
+                height: 0.1em;
+                border-radius: 10px;
+                border: none;
+                background-color: var.$clr-border-graph;
+            }
+            & > div:not(:last-of-type) {
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+            }
+            &-progress {
+                width: 100%;
+                height: 1em;
+                position: relative;
+                & hr {
+                    border: none;
+                    height: 100%;
+                    border-radius: 15px;
+                }
+                &-done {
+                    background-color: var.$clr-progress-done;
+                    position: absolute;
+                }
+                &-total {
+                    background-color: var.$clr-progress-total;
                 }
             }
         }
@@ -201,6 +234,20 @@ body {
                             background-color: var.$clr-bck-hover-bookmark-button;
                         }
                     }
+                }
+            }
+            &-graph {
+                flex-direction: row;
+                justify-content: flex-start;
+                text-align: left;
+                flex-wrap: wrap;
+                gap: 3em;
+                & > hr {
+                    width: 0.1em;
+                    height: 5em;
+                }
+                & > div:not(:last-of-type) {
+                    width: 24%;
                 }
             }
         }
