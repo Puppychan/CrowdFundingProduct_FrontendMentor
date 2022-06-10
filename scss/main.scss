@@ -19,14 +19,14 @@ body {
         // width: 100%;
         width: 90%;
 
-        &::after {
+        &.open::after {
             content: " ";
             @include mi.absolute(0, auto, 0, 0);
             z-index: -1;
             height: 100vh;
 
             background: linear-gradient(-180deg, var.$black, #fff);
-            opacity: 0.3;
+            opacity: 0.5;
         }
         &-img {
             @include mi.absolute(0, auto, 0);
@@ -46,18 +46,19 @@ body {
             object-fit: contain;
         }
         &-list {
-            display: flex;
+            display: none;
             flex-direction: column;
             width: 90%;
-            @include mi.absolute(7em);
+            @include mi.absolute(6em);
 
             background-color: white;
             border-radius: 10px;
             overflow: hidden;
             &-link {
-                padding: 2.3em 2em;
-                border-bottom: 1px solid var.$dark-gray;
+                font-size: 1.5rem;
+                padding: 1.7em 1.2em;
                 text-decoration: none;
+                border-bottom: 1.2px solid #ccc;
                 color: var.$black;
                 font-weight: 500;
                 &:last-of-type {
@@ -65,12 +66,35 @@ body {
                 }
             }
         }
+        &.open .header-list {
+            display: flex;
+        }
     }
 }
 @media screen and (min-width: 1440px){
-    .header {
-        &-menuicon {
-            display: none;
+    body {
+        .header {
+            padding: 3.5em 0;
+            width: 85%;
+            &-menuicon {
+                display: none;
+            }
+            &-list {
+                position: relative;
+                top: 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                gap: 3em;
+                background-color: transparent;
+                &-link {
+                    font-size: 1.4rem;
+                    font-weight: 400;
+                    padding: 0;
+                    border: none;
+                    color: white;
+                }
+            }
         }
     }
 }

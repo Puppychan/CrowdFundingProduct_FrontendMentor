@@ -19,7 +19,7 @@ body .header {
   padding: 2em 0;
   width: 90%;
 }
-body .header::after {
+body .header.open::after {
   content: " ";
   position: absolute;
   top: 0;
@@ -29,7 +29,7 @@ body .header::after {
   z-index: -1;
   height: 100vh;
   background: linear-gradient(-180deg, hsl(0deg, 0%, 0%), #fff);
-  opacity: 0.3;
+  opacity: 0.5;
 }
 body .header-img {
   position: absolute;
@@ -52,11 +52,11 @@ body .header-menuicon {
   object-fit: contain;
 }
 body .header-list {
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 90%;
   position: absolute;
-  top: 7em;
+  top: 6em;
   bottom: auto;
   left: auto;
   right: auto;
@@ -65,19 +65,43 @@ body .header-list {
   overflow: hidden;
 }
 body .header-list-link {
-  padding: 2.3em 2em;
-  border-bottom: 1px solid hsl(0deg, 0%, 48%);
+  font-size: 1.5rem;
+  padding: 1.7em 1.2em;
   text-decoration: none;
+  border-bottom: 1.2px solid #ccc;
   color: hsl(0deg, 0%, 0%);
   font-weight: 500;
 }
 body .header-list-link:last-of-type {
   border-bottom: none;
 }
+body .header.open .header-list {
+  display: flex;
+}
 
 @media screen and (min-width: 1440px) {
-  .header-menuicon {
+  body .header {
+    padding: 3.5em 0;
+    width: 85%;
+  }
+  body .header-menuicon {
     display: none;
+  }
+  body .header-list {
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 3em;
+    background-color: transparent;
+  }
+  body .header-list-link {
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 0;
+    border: none;
+    color: white;
   }
 }
 
