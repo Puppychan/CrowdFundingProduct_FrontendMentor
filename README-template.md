@@ -49,6 +49,12 @@ I learn how to make image responsive this time without having to use css (only o
 ```
 - source is when in desktop
 - img is when on mobile or normal window
+
+Set disable state for button using js, convert number to string having comma
+```js
+button.setAttribute("disabled", true)
+number.toLocaleString();
+```
 ### Continued development
 
 I think I will make 4 cards spinnable if I have time.

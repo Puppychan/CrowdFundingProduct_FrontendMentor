@@ -21,17 +21,18 @@ body .header {
   padding: 2em 0;
   width: 90%;
 }
-body .header.open::after {
+body .header.open::before {
   content: " ";
   position: absolute;
   top: 0;
   bottom: auto;
   left: 0;
   right: 0;
-  z-index: -1;
+  z-index: 1;
+  position: fixed;
   height: 100vh;
   background: linear-gradient(-180deg, hsl(0deg, 0%, 0%), #fff);
-  opacity: 0.5;
+  opacity: 0.7;
 }
 body .header-img {
   position: absolute;
@@ -48,17 +49,19 @@ body .header-img source, body .header-img img {
 }
 body .header-logo {
   width: min(50%, 11.5em);
+  z-index: 2;
 }
 body .header-menuicon {
   width: min(8%, 2.2em);
   object-fit: contain;
+  z-index: 2;
 }
 body .header-list {
   display: none;
   flex-direction: column;
   width: 90%;
   position: absolute;
-  top: 6em;
+  top: 8em;
   bottom: auto;
   left: auto;
   right: auto;
@@ -80,6 +83,7 @@ body .header-list-link:last-of-type {
 }
 body .header.open .header-list {
   display: flex;
+  z-index: 2;
 }
 body .main {
   margin-top: 30vw;
@@ -90,7 +94,7 @@ body .main {
 }
 body .main-intro {
   background-color: white;
-  padding: 4em 1.7em;
+  padding: 4em 1.3em;
   border-radius: 15px;
   width: 100%;
   display: flex;
@@ -137,7 +141,7 @@ body .main-intro-buttons-back:hover {
   cursor: pointer;
 }
 body .main-intro-buttons-bookmark {
-  width: 17%;
+  width: 20%;
   padding: 1vw;
   border-radius: 12vw;
   background-color: transparent;
@@ -166,7 +170,7 @@ body .main-intro-buttons-bookmark.tick span {
 }
 body .main-graph {
   background-color: white;
-  padding: 4em 1.7em;
+  padding: 4em 1.3em;
   border-radius: 15px;
   width: 100%;
   display: flex;
@@ -204,6 +208,32 @@ body .main-graph-progress-done {
 }
 body .main-graph-progress-total {
   background-color: rgb(220, 220, 220);
+}
+body .main-content {
+  background-color: white;
+  padding: 4em 1.3em;
+  border-radius: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75em;
+}
+body .main-content-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+body .main-content-text-title {
+  color: hsl(0deg, 0%, 0%);
+  font-weight: 700;
+}
+body .main-content-text-desc {
+  color: hsl(0deg, 0%, 48%);
+  font-weight: 400;
+  line-height: 1.6;
+  font-size: 0.94rem;
 }
 
 @media screen and (min-width: 1440px) {

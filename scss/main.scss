@@ -19,14 +19,14 @@ body {
         align-items: center;
         padding: 2em 0;
         width: 90%;
-        // background: url("../images/image-hero-mobile.jpg") center/ contain no-repeat;
-        &.open::after {
+        &.open::before {
             content: " ";
-            @include mi.absolute(0, auto, 0, 0, -1);
+            @include mi.absolute(0, auto, 0, 0, 1);
+            position: fixed;
             height: 100vh;
 
             background: linear-gradient(-180deg, var.$clr-txt-main, #fff);
-            opacity: 0.5;
+            opacity: 0.7;
         }
         &-img {
             @include mi.absolute(0, auto, 0, auto, -1);
@@ -38,16 +38,18 @@ body {
         }
         &-logo {
             width: min(50%, 11.5em);
+            z-index: 2;
         }
         &-menuicon {
             width: min(8%, 2.2em);
             object-fit: contain;
+            z-index: 2;
         }
         &-list {
             display: none;
             flex-direction: column;
             width: 90%;
-            @include mi.absolute(6em);
+            @include mi.absolute(8em);
 
             background-color: white;
             border-radius: 10px;
@@ -66,6 +68,7 @@ body {
         }
         &.open .header-list {
             display: flex;
+            z-index: 2;
         }
     }
     .main {
@@ -103,7 +106,7 @@ body {
                     max-width: 20em;
                 }
                 &-bookmark {
-                    @include mi.style-button(17%, transparent, var.$clr-txt-bookmark-button);
+                    @include mi.style-button(20%, transparent, var.$clr-txt-bookmark-button);
                     padding: 0;
                     display: flex;
                     justify-content: flex-end;
@@ -156,6 +159,24 @@ body {
                 }
                 &-total {
                     background-color: var.$clr-progress-total;
+                }
+            }
+        }
+        &-content {
+            @include mi.style-card("start", 0.75em);
+            &-text {
+                display: flex;
+                flex-direction: column;
+                gap: 2em;
+                &-title {
+                    color: var.$clr-txt-main;
+                    font-weight: 700;
+                }
+                &-desc {
+                    color: var.$clr-txt-desc;
+                    font-weight: 400;
+                    line-height: 1.6;
+                    font-size: 0.94rem;
                 }
             }
         }
