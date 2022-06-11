@@ -5,6 +5,7 @@ let bookmarkButton = document.querySelector(".main-intro-buttons-bookmark");
 let mainGraphBackedNumber = document.querySelector(".main-graph-backed-num");
 let progressBarDone = document.querySelector(".main-graph-progress-done");
 let itemContainer = document.querySelector(".main-content-items-wrap");
+let itemContainerModal = document.querySelector(".main-content.modal .main-content-items-wrap");
 displayProgressDone();
 addItems();
 
@@ -44,21 +45,23 @@ async function addItems() {
         if (index == 0) return;
         let leftNum = element["amount"];
         itemsHtml += `
-        <div class="main-content-items ${leftNum == 0? "disabled" : ""}">
-        
-            <div class="main-content-items-head">
+        <div class="main-content-items ${leftNum == 0? "disabled" : ""}">  
+            <label for="item-${index}" class="main-content-items-head">
                 <h4 class="main-content-items-head-title">${element["name"]}</h4>
                 <p class="main-content-items-head-money">Pledge $${element["pledge"]} or more</p>
-            </div>
+            </label>
+            <input type="radio" name="itemChoose${index}" id="item-${index}" ${leftNum == 0 ? "disabled" : ""}>
             <p class="main-content-items-desc">${element["desc"]}</p>
             <h3 class="main-content-items-remaining">
             ${leftNum} 
             <span>left</span>
             </h3>
             <button class='main-content-items-select ${leftNum == 0 ? "disabled' disabled >Out of stock" : "'>Select Reward"}</button>
-      </div>`
+
+        </div>`;
     });
     itemContainer.insertAdjacentHTML("beforeend", itemsHtml);
+    itemContainerModal.insertAdjacentHTML("beforeend", itemsHtml);
 }
 
 

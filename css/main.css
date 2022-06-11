@@ -31,7 +31,7 @@ body .header.open::before {
   z-index: 1;
   position: fixed;
   height: 100vh;
-  background: linear-gradient(-180deg, hsl(0deg, 0%, 0%), #fff);
+  background: linear-gradient(-180deg, hsl(0deg, 0%, 0%), rgb(230, 230, 230));
   opacity: 0.7;
 }
 body .header-img {
@@ -231,7 +231,7 @@ body .main-content {
 body .main-content-text {
   display: flex;
   flex-direction: column;
-  gap: 1.4em;
+  gap: 1em;
 }
 body .main-content-text-title {
   color: hsl(0deg, 0%, 0%);
@@ -249,7 +249,7 @@ body .main-content-items {
   border-radius: 15px;
   padding: 2.3em 1.6em;
   display: grid;
-  grid-template-columns: repeat(auto, 4);
+  grid-template-areas: "head" "desc" "remain" "select";
   gap: 1.5em;
 }
 body .main-content-items-wrap {
@@ -263,20 +263,27 @@ body .main-content-items.disabled {
 body .main-content-items-head {
   display: flex;
   flex-direction: column;
+  grid-area: head;
 }
 body .main-content-items-head-title {
   font-weight: 700;
+  word-wrap: normal;
 }
 body .main-content-items-head-money {
   color: hsl(176deg, 50%, 47%);
   font-weight: 500;
 }
+body .main-content-items input[type=radio] {
+  display: none;
+}
 body .main-content-items-desc {
   color: hsl(0deg, 0%, 48%);
   line-height: 1.8;
+  grid-area: desc;
 }
 body .main-content-items-remaining {
   font-size: 1.7rem;
+  grid-area: remain;
   display: flex;
   align-items: center;
   gap: 0.2em;
@@ -288,6 +295,7 @@ body .main-content-items-remaining span {
   color: hsl(0deg, 0%, 48%);
 }
 body .main-content-items-select {
+  grid-area: select;
   width: 55%;
   padding: 1vw;
   border-radius: 12vw;
@@ -305,6 +313,66 @@ body .main-content-items-select:hover {
 body .main-content-items-select.disabled {
   background-color: #ccc;
   cursor: auto;
+}
+body .main-content-items-inputmess {
+  border-top: 1px solid red;
+}
+body .main-content-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .main-content-wrap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  position: fixed;
+  background: linear-gradient(-180deg, hsl(0deg, 0%, 0%), rgb(169, 169, 169));
+  opacity: 0.7;
+}
+body .main-content.modal {
+  position: absolute;
+  top: 9em;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  z-index: 3;
+  width: 80%;
+}
+body .main-content.modal .main-content-items {
+  grid-template-areas: "check head head" ". desc desc" ". remain remain";
+  gap: 1.2em 0.7em;
+}
+body .main-content.modal .main-content-items [id^=item-] {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 2px #ccc solid;
+  width: 5.7vw;
+  height: 5.7vw;
+  border-radius: 50%;
+  grid-area: check;
+  align-self: center;
+  display: grid;
+}
+body .main-content.modal .main-content-items [id^=item-]:not(:checked):hover {
+  background-color: rgb(216, 214, 214);
+  cursor: pointer;
+}
+body .main-content.modal .main-content-items [id^=item-]:checked::after {
+  justify-self: center;
+  align-self: center;
+  width: 2.2vw;
+  height: 2.2vw;
+  border-radius: 50%;
+  content: " ";
+  background-color: hsl(176deg, 50%, 47%);
+}
+body .main-content.modal .main-content-items-select {
+  display: none;
 }
 
 @media screen and (min-width: 1440px) {
@@ -380,18 +448,34 @@ body .main-content-items-select.disabled {
     grid-template: "head head" "desc desc" "remain select";
   }
   body .main-content-items-head {
-    grid-area: head;
     flex-direction: row;
     justify-content: space-between;
   }
-  body .main-content-items-desc {
-    grid-area: desc;
-  }
-  body .main-content-items-remaining {
-    grid-area: remain;
-  }
   body .main-content-items-select {
-    grid-area: select;
+    justify-self: flex-end;
+  }
+  body .main-content.modal {
+    width: 50%;
+  }
+  body .main-content.modal .main-content-items {
+    grid-template-columns: 0.03fr 1fr 0.2fr;
+    grid-template-areas: "check head remain" ". desc desc";
+    row-gap: 0.4em;
+  }
+  body .main-content.modal .main-content-items [id^=item-] {
+    width: 2vw;
+    height: 2vw;
+  }
+  body .main-content.modal .main-content-items [id^=item-]:checked::after {
+    width: 1.2vw;
+    height: 1.2vw;
+  }
+  body .main-content.modal .main-content-items-head {
+    align-self: center;
+    justify-content: flex-start;
+    gap: 1em;
+  }
+  body .main-content.modal .main-content-items-remaining {
     justify-self: flex-end;
   }
 }

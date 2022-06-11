@@ -19,6 +19,11 @@ $clr-progress-total: rgb(220, 220, 220);
 
 // items
 $clr-txt-items-small: hsl(176, 50%, 47%);
+$clr-checked-input: hsl(176, 50%, 47%);
+
+// modal background
+$clr-overlay-nav: linear-gradient(-180deg, $clr-txt-main, rgb(230, 230, 230));
+$clr-overlay-selectmodal: linear-gradient(-180deg, $clr-txt-main, rgb(169, 169, 169));
 
 $padding-button-desktop: 1.4vw;
 $padding-button-mobile: 1vw;

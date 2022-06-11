@@ -25,7 +25,7 @@ body {
             position: fixed;
             height: 100vh;
 
-            background: linear-gradient(-180deg, var.$clr-txt-main, #fff);
+            background: var.$clr-overlay-nav;
             opacity: 0.7;
         }
         &-img {
@@ -167,7 +167,7 @@ body {
             &-text {
                 display: flex;
                 flex-direction: column;
-                gap: 1.4em;
+                gap: 1em;
                 &-title {
                     color: var.$clr-txt-main;
                     font-weight: 700;
@@ -193,25 +193,36 @@ body {
                 border-radius: 15px;
                 padding: 2.3em 1.6em;
                 display: grid;
-                grid-template-columns: repeat(auto, 4);
+                grid-template-areas: 
+                "head"
+                "desc"
+                "remain"
+                "select";
                 gap: 1.5em;
                 &-head {
                     display: flex;
                     flex-direction: column;
+                    grid-area: head;
                     &-title {
                         font-weight: 700;
+                        word-wrap: normal;
                     }
                     &-money {
                         color: var.$clr-txt-items-small;
                         font-weight: 500;
                     }
                 }
+                input[type="radio"] {
+                    display: none;
+                }
                 &-desc {
                     color: var.$clr-txt-desc;
                     line-height: 1.8;
+                    grid-area: desc;
                 }
                 &-remaining {
                     font-size: 1.7rem;
+                    grid-area: remain;
                     display: flex;
                     align-items: center;
                     gap: 0.2em;
@@ -223,13 +234,75 @@ body {
                     }
                 }
                 &-select {
+                    grid-area: select;
                     @include mi.style-button(55%);
                     padding: 1.35em;
                     max-width: 15em;
                 }
+                &-inputmess {
+                    border-top: 1px solid red;
+                }
+            }
+
+            // for modal
+            &-wrap {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                &::before {
+                    content: "";
+                    @include mi.absolute(0, 0, 0, 0, 2);
+                    position: fixed;
+                    background: var.$clr-overlay-selectmodal;
+                    opacity: 0.7;
+                }
+            }
+            &.modal {
+                @include mi.absolute(9em, auto, auto, auto, 3);
+                // position: fixed;
+                width: 80%;
+                .main-content-items {
+                    grid-template-areas: 
+                    "check head head"
+                    ". desc desc"
+                    ". remain remain";
+                    gap: 1.2em 0.7em;
+                    & [id^="item-"] {
+                        // hide auto style radio input
+                        -webkit-appearance: none;
+                        appearance: none;
+    
+                        border: 2px var.$clr-border-graph solid;
+                        width: 5.7vw;
+                        height: 5.7vw;
+                        border-radius: 50%;
+    
+                        grid-area: check;
+                        align-self: center;
+                        display: grid;
+                        &:not(:checked):hover {
+                            background-color: var.$clr-bck-bookmark-button;
+                            cursor: pointer;
+                        }
+                        &:checked::after {
+                            // for at center (grid)
+                            justify-self: center;
+                            align-self: center;
+    
+                            width: 2.2vw;
+                            height: 2.2vw;
+                            border-radius: 50%;
+    
+                            content: " ";
+                            background-color: var.$clr-checked-input;
+                        }
+                    }
+                    &-select {
+                        display: none;
+                    }
+                }
             }
         }
-
     }
 }
 // @media screen and (min-width: 700px){
@@ -327,19 +400,41 @@ body {
                     "desc desc"
                     "remain select";
                     &-head {
-                        grid-area: head;
                         flex-direction: row;
                         justify-content: space-between;
                     }
-                    &-desc {
-                        grid-area: desc;
-                    }
-                    &-remaining {
-                        grid-area: remain;
-                    }
                     &-select {
-                        grid-area: select;
                         justify-self: flex-end;
+                    }
+                }
+
+                &.modal {
+                    width: 50%;
+                    .main-content-items {
+                        grid-template-columns: 0.03fr 1fr 0.2fr;
+                        grid-template-areas: 
+                        "check head remain"
+                        ". desc desc";
+                        row-gap: 0.4em;
+                        & [id^="item-"] {
+                            width: 2vw;
+                            height: 2vw;
+                            &:checked::after {
+                                width: 1.2vw;
+                                height: 1.2vw;
+                            }
+                        }
+                        &-head {
+                            align-self: center;
+                            // flex-wrap: nowrap;
+
+                            justify-content: flex-start;
+                            gap: 1em;
+                        }
+                        &-remaining {
+                            justify-self: flex-end;
+                            // grid-column: 1 / span 0.5;
+                        }
                     }
                 }
             }
