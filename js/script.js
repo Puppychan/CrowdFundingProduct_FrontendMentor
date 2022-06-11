@@ -40,19 +40,22 @@ async function fetchItems() {
 async function addItems() {
     let itemsArr = await fetchItems();
     let itemsHtml = "";
-    itemsArr.forEach(element => {
+    itemsArr.forEach((element, index) => {
+        if (index == 0) return;
+        let leftNum = element["amount"];
         itemsHtml += `
-        <div class="main-content-items">
+        <div class="main-content-items ${leftNum == 0? "disabled" : ""}">
+        
             <div class="main-content-items-head">
                 <h4 class="main-content-items-head-title">${element["name"]}</h4>
                 <p class="main-content-items-head-money">Pledge $${element["pledge"]} or more</p>
             </div>
             <p class="main-content-items-desc">${element["desc"]}</p>
             <h3 class="main-content-items-remaining">
-            ${element["amount"]} 
+            ${leftNum} 
             <span>left</span>
             </h3>
-            <button class='main-content-items-select ${element["amount"] == 0 ? "disabled' disabled >Out of stock" : "'>Select Reward"}</button>
+            <button class='main-content-items-select ${leftNum == 0 ? "disabled' disabled >Out of stock" : "'>Select Reward"}</button>
       </div>`
     });
     itemContainer.insertAdjacentHTML("beforeend", itemsHtml);

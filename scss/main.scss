@@ -186,6 +186,9 @@ body {
                     flex-direction: column;
                     gap: 2em;
                 }
+                &.disabled {
+                    opacity: 0.5;
+                }
                 border: 1px var.$clr-border-graph solid;
                 border-radius: 15px;
                 padding: 2.3em 1.6em;

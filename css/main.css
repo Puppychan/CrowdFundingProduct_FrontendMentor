@@ -257,6 +257,9 @@ body .main-content-items-wrap {
   flex-direction: column;
   gap: 2em;
 }
+body .main-content-items.disabled {
+  opacity: 0.5;
+}
 body .main-content-items-head {
   display: flex;
   flex-direction: column;
