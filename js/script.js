@@ -4,8 +4,9 @@ let backProjectButton = document.querySelector(".main-intro-buttons-back");
 let bookmarkButton = document.querySelector(".main-intro-buttons-bookmark");
 let mainGraphBackedNumber = document.querySelector(".main-graph-backed-num");
 let progressBarDone = document.querySelector(".main-graph-progress-done");
-let itemContainer = document.querySelector(".main-content-items");
+let itemContainer = document.querySelector(".main-content-items-wrap");
 displayProgressDone();
+addItems();
 
 // convert back number text to plain number
 function convertBackNumer() {
@@ -15,14 +16,16 @@ function convertBackNumer() {
 function displayProgressDone() {
     progressBarDone.style.width = `${100 * convertBackNumer() / 100000}%`;
 }
+// disable button 
+function disableButton(button) {
+    button.setAttribute("disabled", true);
+    button.classList.add("disabled");
+}
 // update total back number
 function updateBackNumber() {
     let currentBackNumber = convertBackNumer();
     // check if number reach limit
-    if (currentBackNumber == 99999) {
-        backProjectButton.setAttribute("disabled", true);
-        backProjectButton.style.backgroundColor = "#ccc";
-    }
+    if (currentBackNumber == 99999) disableButton(backProjectButton);
 
     // covert and increase number
     mainGraphBackedNumber.innerHTML = `$${(++currentBackNumber).toLocaleString()}`;
@@ -31,14 +34,28 @@ function updateBackNumber() {
 }
 // fetch items storage 
 async function fetchItems() {
-    return jsonBody = await (await (await fetch("./items.json")).json());
+    return jsonBody = await (await (await fetch("./js/items.json")).json());
 }
 // add items
 async function addItems() {
     let itemsArr = await fetchItems();
+    let itemsHtml = "";
     itemsArr.forEach(element => {
-        
+        itemsHtml += `
+        <div class="main-content-items">
+            <div class="main-content-items-head">
+                <h4 class="main-content-items-head-title">${element["name"]}</h4>
+                <p class="main-content-items-head-money">Pledge $${element["pledge"]} or more</p>
+            </div>
+            <p class="main-content-items-desc">${element["desc"]}</p>
+            <h3 class="main-content-items-remaining">
+            ${element["amount"]} 
+            <span>left</span>
+            </h3>
+            <button class='main-content-items-select ${element["amount"] == 0 ? "disabled' disabled >Out of stock" : "'>Select Reward"}</button>
+      </div>`
     });
+    itemContainer.insertAdjacentHTML("beforeend", itemsHtml);
 }
 
 

@@ -51,4 +51,8 @@
         cursor: pointer;
         // color: $color-hover;
     }
+    &.disabled {
+        background-color: #ccc;
+        cursor: auto;
+    }
 }

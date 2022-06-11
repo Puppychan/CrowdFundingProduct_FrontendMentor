@@ -140,6 +140,10 @@ body .main-intro-buttons-back:hover {
   background-color: hsl(176deg, 72%, 28%);
   cursor: pointer;
 }
+body .main-intro-buttons-back.disabled {
+  background-color: #ccc;
+  cursor: auto;
+}
 body .main-intro-buttons-bookmark {
   width: 20%;
   padding: 1vw;
@@ -155,6 +159,10 @@ body .main-intro-buttons-bookmark {
 }
 body .main-intro-buttons-bookmark:hover {
   cursor: pointer;
+}
+body .main-intro-buttons-bookmark.disabled {
+  background-color: #ccc;
+  cursor: auto;
 }
 body .main-intro-buttons-bookmark span {
   display: none;
@@ -218,12 +226,12 @@ body .main-content {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.75em;
+  gap: 4em;
 }
 body .main-content-text {
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 1.4em;
 }
 body .main-content-text-title {
   color: hsl(0deg, 0%, 0%);
@@ -232,8 +240,68 @@ body .main-content-text-title {
 body .main-content-text-desc {
   color: hsl(0deg, 0%, 48%);
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 2;
+  letter-spacing: 0.8px;
   font-size: 0.94rem;
+}
+body .main-content-items {
+  border: 1px #ccc solid;
+  border-radius: 15px;
+  padding: 2.3em 1.6em;
+  display: grid;
+  grid-template-columns: repeat(auto, 4);
+  gap: 1.5em;
+}
+body .main-content-items-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+body .main-content-items-head {
+  display: flex;
+  flex-direction: column;
+}
+body .main-content-items-head-title {
+  font-weight: 700;
+}
+body .main-content-items-head-money {
+  color: hsl(176deg, 50%, 47%);
+  font-weight: 500;
+}
+body .main-content-items-desc {
+  color: hsl(0deg, 0%, 48%);
+  line-height: 1.8;
+}
+body .main-content-items-remaining {
+  font-size: 1.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+}
+body .main-content-items-remaining span {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: hsl(0deg, 0%, 48%);
+}
+body .main-content-items-select {
+  width: 55%;
+  padding: 1vw;
+  border-radius: 12vw;
+  background-color: hsl(176deg, 50%, 47%);
+  font-weight: 700;
+  color: white;
+  border: none;
+  padding: 1.35em;
+  max-width: 15em;
+}
+body .main-content-items-select:hover {
+  background-color: hsl(176deg, 72%, 28%);
+  cursor: pointer;
+}
+body .main-content-items-select.disabled {
+  background-color: #ccc;
+  cursor: auto;
 }
 
 @media screen and (min-width: 1440px) {
@@ -278,12 +346,12 @@ body .main-content-text-desc {
   body .main-intro-buttons-bookmark {
     background-color: rgb(216, 214, 214);
     padding: 1.4vw;
-    width: 24%;
+    width: 20.5%;
     position: relative;
   }
   body .main-intro-buttons-bookmark-icon {
     position: absolute;
-    left: 0.06em;
+    left: 0.05em;
   }
   body .main-intro-buttons-bookmark span {
     display: inline;
@@ -304,6 +372,24 @@ body .main-content-text-desc {
   }
   body .main-graph > div:not(:last-of-type) {
     width: 24%;
+  }
+  body .main-content-items {
+    grid-template: "head head" "desc desc" "remain select";
+  }
+  body .main-content-items-head {
+    grid-area: head;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  body .main-content-items-desc {
+    grid-area: desc;
+  }
+  body .main-content-items-remaining {
+    grid-area: remain;
+  }
+  body .main-content-items-select {
+    grid-area: select;
+    justify-self: flex-end;
   }
 }
 

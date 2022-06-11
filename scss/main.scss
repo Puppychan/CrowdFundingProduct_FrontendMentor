@@ -163,11 +163,11 @@ body {
             }
         }
         &-content {
-            @include mi.style-card("start", 0.75em);
+            @include mi.style-card("start", 4em);
             &-text {
                 display: flex;
                 flex-direction: column;
-                gap: 2em;
+                gap: 1.4em;
                 &-title {
                     color: var.$clr-txt-main;
                     font-weight: 700;
@@ -175,8 +175,54 @@ body {
                 &-desc {
                     color: var.$clr-txt-desc;
                     font-weight: 400;
-                    line-height: 1.6;
+                    line-height: 2;
+                    letter-spacing: 0.8px;
                     font-size: 0.94rem;
+                }
+            }
+            &-items {
+                &-wrap {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2em;
+                }
+                border: 1px var.$clr-border-graph solid;
+                border-radius: 15px;
+                padding: 2.3em 1.6em;
+                display: grid;
+                grid-template-columns: repeat(auto, 4);
+                gap: 1.5em;
+                &-head {
+                    display: flex;
+                    flex-direction: column;
+                    &-title {
+                        font-weight: 700;
+                    }
+                    &-money {
+                        color: var.$clr-txt-items-small;
+                        font-weight: 500;
+                    }
+                }
+                &-desc {
+                    color: var.$clr-txt-desc;
+                    line-height: 1.8;
+                }
+                &-remaining {
+                    font-size: 1.7rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.2em;
+                    & span {
+                        font-size: 1rem;
+                        font-weight: 500;
+                        letter-spacing: 0.8px;
+                        color: var.$clr-txt-desc;
+                    }
+                }
+                &-select {
+                    @include mi.style-button(55%);
+                    padding: 1.35em;
+                    max-width: 15em;
                 }
             }
         }
@@ -241,12 +287,12 @@ body {
                     &-bookmark {
                         background-color: var.$clr-bck-bookmark-button;
                         padding: var.$padding-button-desktop;
-                        width: 24%;
+                        width: 20.5%;
                         
                         position: relative;
                         &-icon {
                             position: absolute;
-                            left: 0.06em;
+                            left: 0.05em;
                         }
                         & span {
                             display: inline;
@@ -269,6 +315,29 @@ body {
                 }
                 & > div:not(:last-of-type) {
                     width: 24%;
+                }
+            }
+            &-content {
+                &-items {
+                    grid-template: 
+                    "head head"
+                    "desc desc"
+                    "remain select";
+                    &-head {
+                        grid-area: head;
+                        flex-direction: row;
+                        justify-content: space-between;
+                    }
+                    &-desc {
+                        grid-area: desc;
+                    }
+                    &-remaining {
+                        grid-area: remain;
+                    }
+                    &-select {
+                        grid-area: select;
+                        justify-self: flex-end;
+                    }
                 }
             }
         }
