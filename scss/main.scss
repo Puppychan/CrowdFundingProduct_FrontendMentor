@@ -245,10 +245,10 @@ body {
             }
 
             // for modal
-            &-wrap.close {
-                display: none;
-            }
             &-wrap {
+                &.close {
+                    display: none;
+                }
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -270,6 +270,11 @@ body {
                     top: 1.7em;
                     // right: 4.2em;
                     right: 1.3em;
+                    cursor: pointer;
+                    transition: transform 200ms;
+                    &:hover {
+                        transform: scale((1.1));
+                    }
                 }
                 .main-content-items {
                     grid-template-areas: 
@@ -373,6 +378,43 @@ body {
                             @include mi.style-button(100%);
                         }
                     }
+                }
+            }
+        }
+
+        &-thankyou {
+            &.close {
+                display: none;
+            }
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &::before {
+                content: " ";
+                @include mi.absolute(0, 0, 0, 0, 2);
+                position: fixed;
+                background: var.$clr-overlay-selectmodal;
+                opacity: 0.5;
+            }
+            &-win {
+                @include mi.style-card("center", 1.3em);
+                @include mi.absolute(15em, auto, auto, auto, 2);
+                width: 95%;
+                display: flex;
+                &-title {
+                    word-spacing: 2px;
+                    font-weight: 700;
+                    color: var.$clr-txt-main;
+                    font-size: 1.15rem;
+                }
+                &-desc {
+                    color: var.$clr-txt-desc;
+                    font-size: 0.9rem;
+                    line-height: 1.8;
+                }
+                &-btn {
+                    @include mi.style-button(27%);
+                    padding: 1em;
                 }
             }
         }
@@ -519,6 +561,16 @@ body {
                                 justify-self: flex-start; 
                             }
                         }
+                    }
+                }
+            }
+            &-thankyou {
+                &-win {
+                    width: 30%;
+                    gap: 1.7em;
+                    &-btn {
+                        width: 19.3%;
+                        padding: 1.2em 1em;
                     }
                 }
             }

@@ -2,37 +2,56 @@ let menuIcon = document.querySelector(".header-menuicon");
 let header = document.querySelector('.header');
 let backProjectButton = document.querySelector(".main-intro-buttons-back");
 let bookmarkButton = document.querySelector(".main-intro-buttons-bookmark");
-let mainGraphBackedNumber = document.querySelector(".main-graph-backed-num");
+let mainGraphBackedAmount = document.querySelector(".main-graph-backed-num");
+let mainGraphBackedNum = document.querySelector(".main-graph-backers-num");
 let progressBarDone = document.querySelector(".main-graph-progress-done");
 let itemContainer = document.querySelector(".main-content-items-wrap");
 let itemContainerModal = document.querySelector(".main-content.modal .main-content-items-wrap");
 let modalCloseIcon = document.querySelector(".main-content-close");
+let modalContent = document.querySelector(".main-content-wrap");
+let modalThank = document.querySelector(".main-thankyou");
+let closeModalThankIcon = document.querySelector(".main-thankyou-win-btn");
 displayProgressDone();
 runModalWin();
 
-// convert back number text to plain number
-function convertBackNumer() {
-    return mainGraphBackedNumber.innerHTML.replaceAll(/[\$|\,]/g, "");
-}
 // display progress bar
 function displayProgressDone() {
-    progressBarDone.style.width = `${100 * convertBackNumer() / 100000}%`;
+    progressBarDone.style.width = `${100 * convertStrToNum(mainGraphBackedAmount.innerHTML) / 100000}%`;
 }
 // disable button 
 function disableButton(button) {
     button.setAttribute("disabled", true);
     button.classList.add("disabled");
 }
-// update total back number
-function updateBackNumber() {
-    let currentBackNumber = convertBackNumer();
-    // check if number reach limit
-    if (currentBackNumber == 99999) disableButton(backProjectButton);
+// convert back number text to plain number
+function convertStrToNum(numStr) {
+    return numStr.replaceAll(/[\$|\,]/g, "");
+}
+// update total back amount
+function updateBackAmount() {
+    let currentBackAmount = convertStrToNum(mainGraphBackedAmount.innerHTML);
+    // // check if number reach limit
+    if (currentBackAmount == 99999) disableButton(backProjectButton);
 
     // covert and increase number
-    mainGraphBackedNumber.innerHTML = `$${(++currentBackNumber).toLocaleString()}`;
+    mainGraphBackedAmount.innerHTML = `$${(++currentBackAmount).toLocaleString()}`;
     // display to progress bar
     displayProgressDone();
+}
+// update back number
+function updateBackNumber() {
+    let currentBackNum = convertStrToNum(mainGraphBackedNum.innerHTML);
+    mainGraphBackedNum.innerHTML = `${(++currentBackNum).toLocaleString()}`;
+
+}
+// open modal win
+function openModal(modalElement) {
+    console.log(modalElement);
+    modalElement.classList.remove("close");
+}
+// close modal win
+function closeModal(modalElement) {
+    modalElement.classList.add("close");
 }
 // fetch items storage 
 async function fetchItems() {
@@ -89,6 +108,10 @@ let clickRadioInput = event => {
         container.querySelector(".main-content-items input[type='radio'").checked = false;
     }
     else {
+        // plege with not reward
+        closeModal(modalContent);
+        openModal(modalThank);
+        // remove other choices
         container.querySelectorAll(".main-content-items").forEach((otherItem, index) => {
             // uncheck other options (which has subwin)
             if (index == 0) return;
@@ -105,7 +128,7 @@ async function runModalWin() {
     radioInputs.forEach(radioInput => radioInput.addEventListener("click", clickRadioInput));
 
     // add select events
-    document.querySelectorAll(".main-content-items-select").forEach(button => button.addEventListener("click", event => document.querySelector(".main-content-wrap").classList.remove("close")));
+    document.querySelectorAll(".main-content-items-select").forEach(button => button.addEventListener("click", event => openModal(modalContent)));
 }
 // open a subwin
 async function openSubwin(item) {
@@ -121,12 +144,19 @@ menuIcon.addEventListener("click", event => {
 });
 
 // click back this project button
-backProjectButton.addEventListener("click", event => updateBackNumber());
+backProjectButton.addEventListener("click", event => {
+    updateBackNumber();
+    openModal(modalThank);
+});
+// close modal thank 
+closeModalThankIcon.addEventListener("click", event => closeModal(modalThank));
 // click bookmark button
 bookmarkButton.addEventListener('click', event => {
     bookmarkButton.classList.toggle("tick");
     bookmarkButton.querySelector("span").innerHTML = bookmarkButton.classList.contains("tick")? "Bookmarked" : "Bookmark";
 });
 // close modal
-modalCloseIcon.addEventListener("click", event => event.target.parentElement.parentElement.classList.add("close"));
+modalCloseIcon.addEventListener("click", event => {
+    closeModal(modalContent)
+});
 
