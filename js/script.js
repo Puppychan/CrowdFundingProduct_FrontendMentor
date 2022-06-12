@@ -6,8 +6,9 @@ let mainGraphBackedNumber = document.querySelector(".main-graph-backed-num");
 let progressBarDone = document.querySelector(".main-graph-progress-done");
 let itemContainer = document.querySelector(".main-content-items-wrap");
 let itemContainerModal = document.querySelector(".main-content.modal .main-content-items-wrap");
+let modalCloseIcon = document.querySelector(".main-content-close");
 displayProgressDone();
-addItems();
+runModalWin();
 
 // convert back number text to plain number
 function convertBackNumer() {
@@ -78,6 +79,39 @@ async function addItems() {
     itemContainerModal.insertAdjacentHTML("beforeend", itemsHtml);
 }
 
+// click radio input
+let clickRadioInput = event => {
+    let subwin = event.target.parentElement.querySelector(".main-content-items-subwin");
+    let container = event.target.parentElement.parentElement;
+    if (subwin) {
+        subwin.style.display = "grid";
+        // uncheck first option (which has no subwin)
+        container.querySelector(".main-content-items input[type='radio'").checked = false;
+    }
+    else {
+        container.querySelectorAll(".main-content-items").forEach((otherItem, index) => {
+            // uncheck other options (which has subwin)
+            if (index == 0) return;
+            otherItem.querySelector(".main-content-items-subwin").style.display = "none";
+            otherItem.querySelector("input[type='radio'").checked = false;
+        });
+    }
+}
+//
+async function runModalWin() {
+    await addItems();
+    // add radio input events
+    let radioInputs = document.querySelectorAll("input[type='radio']");
+    radioInputs.forEach(radioInput => radioInput.addEventListener("click", clickRadioInput));
+
+    // add select events
+    document.querySelectorAll(".main-content-items-select").forEach(button => button.addEventListener("click", event => document.querySelector(".main-content-wrap").classList.remove("close")));
+}
+// open a subwin
+async function openSubwin(item) {
+    item.querySelector(".main-content-items-subwin").style.display = "grid";
+}
+
 
 
 // open side menu on mobile
@@ -88,9 +122,11 @@ menuIcon.addEventListener("click", event => {
 
 // click back this project button
 backProjectButton.addEventListener("click", event => updateBackNumber());
-
 // click bookmark button
 bookmarkButton.addEventListener('click', event => {
     bookmarkButton.classList.toggle("tick");
     bookmarkButton.querySelector("span").innerHTML = bookmarkButton.classList.contains("tick")? "Bookmarked" : "Bookmark";
 });
+// close modal
+modalCloseIcon.addEventListener("click", event => event.target.parentElement.parentElement.classList.add("close"));
+

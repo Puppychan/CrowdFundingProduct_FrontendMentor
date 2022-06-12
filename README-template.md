@@ -86,6 +86,14 @@ input[type="radio"]:checked::after {
 ```
 
 To make the child ignore the parents' padding -> use negative margin onto the children
+
+To call function inside the event listener
+```js
+function callFunction() {
+  console.log(event);
+}
+element.addEventListener("click", callFunction);
+```
 ### Continued development
 
 I think I will make 4 cards spinnable if I have time.

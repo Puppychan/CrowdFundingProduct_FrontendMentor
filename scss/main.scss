@@ -245,6 +245,9 @@ body {
             }
 
             // for modal
+            &-wrap.close {
+                display: none;
+            }
             &-wrap {
                 display: flex;
                 justify-content: center;
@@ -262,6 +265,12 @@ body {
                 @include mi.absolute(9em, auto, auto, auto, 3);
                 // position: fixed;
                 width: 80%;
+                .main-content-close {
+                    position: absolute;
+                    top: 1.7em;
+                    // right: 4.2em;
+                    right: 1.3em;
+                }
                 .main-content-items {
                     grid-template-areas: 
                     "check head head"

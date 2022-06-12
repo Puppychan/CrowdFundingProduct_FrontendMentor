@@ -317,6 +317,9 @@ body .main-content-items-select.disabled {
 body .main-content-items-subwin {
   display: none;
 }
+body .main-content-wrap.close {
+  display: none;
+}
 body .main-content-wrap {
   display: flex;
   justify-content: center;
@@ -342,6 +345,11 @@ body .main-content.modal {
   right: auto;
   z-index: 3;
   width: 80%;
+}
+body .main-content.modal .main-content-close {
+  position: absolute;
+  top: 1.7em;
+  right: 1.3em;
 }
 body .main-content.modal .main-content-items {
   grid-template-areas: "check head head" ". desc desc" ". remain remain" "subwin subwin subwin";
