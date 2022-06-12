@@ -314,8 +314,8 @@ body .main-content-items-select.disabled {
   background-color: #ccc;
   cursor: auto;
 }
-body .main-content-items-inputmess {
-  border-top: 1px solid red;
+body .main-content-items-subwin {
+  display: none;
 }
 body .main-content-wrap {
   display: flex;
@@ -344,7 +344,7 @@ body .main-content.modal {
   width: 80%;
 }
 body .main-content.modal .main-content-items {
-  grid-template-areas: "check head head" ". desc desc" ". remain remain";
+  grid-template-areas: "check head head" ". desc desc" ". remain remain" "subwin subwin subwin";
   gap: 1.2em 0.7em;
 }
 body .main-content.modal .main-content-items [id^=item-] {
@@ -373,6 +373,93 @@ body .main-content.modal .main-content-items [id^=item-]:checked::after {
 }
 body .main-content.modal .main-content-items-select {
   display: none;
+}
+body .main-content.modal .main-content-items-subwin {
+  grid-area: subwin;
+  padding-top: 1em;
+  display: none;
+  grid-template-columns: auto auto;
+  grid-template: "mess mess" auto "input button" auto/1fr 1.3fr;
+  gap: 1em 0.4em;
+  position: relative;
+}
+body .main-content.modal .main-content-items-subwin hr {
+  border: none;
+  position: absolute;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  z-index: auto;
+  height: 0.08em;
+  margin: 0 -1.7em;
+  border-radius: 10px;
+  background-color: #ccc;
+}
+body .main-content.modal .main-content-items-subwin-inputmess {
+  color: hsl(0deg, 0%, 48%);
+  font-weight: 400;
+  grid-area: mess;
+  justify-self: center;
+}
+body .main-content.modal .main-content-items-subwin-input {
+  grid-area: input;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+body .main-content.modal .main-content-items-subwin-input label {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 1em;
+}
+body .main-content.modal .main-content-items-subwin-input label svg {
+  width: 0.9em;
+  height: 0.9em;
+  fill: hsl(0deg, 0%, 48%);
+}
+body .main-content.modal .main-content-items-subwin-input input[type=text] {
+  width: 100%;
+  padding: 1vw;
+  border-radius: 12vw;
+  background-color: white;
+  font-weight: 700;
+  color: hsl(0deg, 0%, 0%);
+  border: none;
+  border: 2px #ccc solid;
+  padding: 1.1em 2.4em;
+}
+body .main-content.modal .main-content-items-subwin-input input[type=text]:hover {
+  cursor: pointer;
+}
+body .main-content.modal .main-content-items-subwin-input input[type=text].disabled {
+  background-color: #ccc;
+  cursor: auto;
+}
+body .main-content.modal .main-content-items-subwin-input input[type=text]:focus {
+  outline: none;
+  border-color: hsl(176deg, 50%, 47%);
+  caret-color: hsl(176deg, 50%, 47%);
+  color: hsl(0deg, 0%, 0%);
+}
+body .main-content.modal .main-content-items-subwin-continue {
+  grid-area: button;
+  width: 100%;
+  padding: 1vw;
+  border-radius: 12vw;
+  background-color: hsl(176deg, 50%, 47%);
+  font-weight: 700;
+  color: white;
+  border: none;
+}
+body .main-content.modal .main-content-items-subwin-continue:hover {
+  background-color: hsl(176deg, 72%, 28%);
+  cursor: pointer;
+}
+body .main-content.modal .main-content-items-subwin-continue.disabled {
+  background-color: #ccc;
+  cursor: auto;
 }
 
 @media screen and (min-width: 1440px) {
@@ -459,8 +546,8 @@ body .main-content.modal .main-content-items-select {
   }
   body .main-content.modal .main-content-items {
     grid-template-columns: 0.03fr 1fr 0.2fr;
-    grid-template-areas: "check head remain" ". desc desc";
-    row-gap: 0.4em;
+    grid-template-areas: "check head remain" ". desc desc" "subwin subwin subwin";
+    row-gap: 1em;
   }
   body .main-content.modal .main-content-items [id^=item-] {
     width: 2vw;
@@ -477,6 +564,14 @@ body .main-content.modal .main-content-items-select {
   }
   body .main-content.modal .main-content-items-remaining {
     justify-self: flex-end;
+  }
+  body .main-content.modal .main-content-items-subwin {
+    grid-template: "mess input button" auto/4fr 1fr 1fr;
+    padding-top: 1.5em;
+    align-items: center;
+  }
+  body .main-content.modal .main-content-items-subwin-inputmess {
+    justify-self: flex-start;
   }
 }
 

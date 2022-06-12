@@ -58,6 +58,20 @@ async function addItems() {
             </h3>
             <button class='main-content-items-select ${leftNum == 0 ? "disabled' disabled >Out of stock" : "'>Select Reward"}</button>
 
+            <div class="main-content-items-subwin">
+                <hr>
+                <p class="main-content-items-subwin-inputmess">Enter your pledge</p>
+                <div class="main-content-items-subwin-input">
+                    <label for="money-item-${index}">
+                    <svg>
+                        <use href="#svg-dollar-sign"></use>
+                    </svg>
+                    </label>
+                    <input type="text" name="moneyInput${index}" id="money-item-${index}" value="${element["pledge"]}">
+                </div>
+                <button class="main-content-items-subwin-continue">Continue</button>
+          </div>
+
         </div>`;
     });
     itemContainer.insertAdjacentHTML("beforeend", itemsHtml);

@@ -239,8 +239,8 @@ body {
                     padding: 1.35em;
                     max-width: 15em;
                 }
-                &-inputmess {
-                    border-top: 1px solid red;
+                &-subwin {
+                    display: none;
                 }
             }
 
@@ -258,6 +258,7 @@ body {
                 }
             }
             &.modal {
+                // main-content.modal
                 @include mi.absolute(9em, auto, auto, auto, 3);
                 // position: fixed;
                 width: 80%;
@@ -265,8 +266,10 @@ body {
                     grid-template-areas: 
                     "check head head"
                     ". desc desc"
-                    ". remain remain";
+                    ". remain remain"
+                    "subwin subwin subwin";
                     gap: 1.2em 0.7em;
+                    // position: relative;
                     & [id^="item-"] {
                         // hide auto style radio input
                         -webkit-appearance: none;
@@ -299,6 +302,67 @@ body {
                     }
                     &-select {
                         display: none;
+                    }
+                    &-subwin {
+                        grid-area: subwin;
+                        padding-top: 1em;
+                        // display: grid;
+                        display: none;
+                        // grid-template-columns: 3fr 1fr 1fr;
+                        grid-template-columns: auto auto;
+                        grid-template:
+                        "mess mess" auto
+                        "input button" auto /
+                        1fr 1.3fr;
+                        // gap: 1em;
+                        gap: 1em 0.4em;
+                        position: relative;
+                        & hr {
+                            border: none;
+                            @include mi.absolute(0, auto, 0, 0);
+                            height: 0.08em;
+                            margin: 0 -1.7em;
+                            border-radius: 10px;
+                            background-color: var.$clr-border-graph;
+                        }
+                        &-inputmess {
+                            color: var.$clr-txt-desc;
+                            font-weight: 400;  
+                            grid-area: mess;   
+                            justify-self: center; 
+                        }
+                        &-input {
+                            grid-area: input;
+                            position: relative;
+                            display: flex;
+                            align-items: center;
+                            & label {
+                                position: absolute;
+                                transform: translateY((-50%));
+                                top: 50%;
+                                left: 1em;
+                                & svg {
+                                    width: 0.9em;
+                                    height: 0.9em;
+                                    fill: var.$clr-txt-desc;
+                                }
+                            }
+                            & input[type="text"] {
+                                @include mi.style-button(100%, var.$clr-bck-input-text, var.$clr-txt-input-text);
+                                border: 2px var.$clr-border-input-text solid;
+                                padding: 1.1em 2.4em;
+                                &:focus {
+                                    outline: none;
+                                    border-color: var.$clr-border-focus-input-text;
+                                    caret-color: var.$clr-caret-focus-input-text;
+                                    color: var.$clr-txt-input-text;
+                                }
+                            }
+                        }
+                        &-continue {
+                            grid-area: button;
+                            @include mi.style-button(100%);
+                        }
                     }
                 }
             }
@@ -414,8 +478,9 @@ body {
                         grid-template-columns: 0.03fr 1fr 0.2fr;
                         grid-template-areas: 
                         "check head remain"
-                        ". desc desc";
-                        row-gap: 0.4em;
+                        ". desc desc"
+                        "subwin subwin subwin";
+                        row-gap: 1em;
                         & [id^="item-"] {
                             width: 2vw;
                             height: 2vw;
@@ -434,6 +499,16 @@ body {
                         &-remaining {
                             justify-self: flex-end;
                             // grid-column: 1 / span 0.5;
+                        }
+                        &-subwin {
+                            grid-template: 
+                            "mess input button" auto/
+                            4fr 1fr 1fr;
+                            padding-top: 1.5em;
+                            align-items: center;
+                            &-inputmess {
+                                justify-self: flex-start; 
+                            }
                         }
                     }
                 }

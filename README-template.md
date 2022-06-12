@@ -55,6 +55,37 @@ Set disable state for button using js, convert number to string having comma
 button.setAttribute("disabled", true)
 number.toLocaleString();
 ```
+
+To style the radio input
+```css
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+```
+- Hide auto style of radio input 
+- To style the checked style of the radio input
+```css
+input[type="radio"] {
+  /* to style the checked and make sure it at the center of the circle without using position relative and absolute */
+  display: grid;
+}
+input[type="radio"]:checked::after {
+  /* position center */
+  justify-self: center;
+  align-self: center;
+
+  content: "";
+  /* style the circle */
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+
+  background-color: red;
+}
+```
+
+To make the child ignore the parents' padding -> use negative margin onto the children
 ### Continued development
 
 I think I will make 4 cards spinnable if I have time.
