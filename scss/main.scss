@@ -361,7 +361,7 @@ body {
                                     fill: var.$clr-txt-desc;
                                 }
                             }
-                            & input[type="text"] {
+                            & input[type="number"] {
                                 @include mi.style-button(100%, var.$clr-bck-input-text, var.$clr-txt-input-text);
                                 border: 2px var.$clr-border-input-text solid;
                                 padding: 1.1em 2.4em;

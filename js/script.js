@@ -13,6 +13,8 @@ let modalThank = document.querySelector(".main-thankyou");
 let closeModalThankIcon = document.querySelector(".main-thankyou-win-btn");
 displayProgressDone();
 runModalWin();
+// event listener for close thank modal button
+closeThankModal();
 
 // display progress bar
 function displayProgressDone() {
@@ -25,16 +27,28 @@ function disableButton(button) {
 }
 // convert back number text to plain number
 function convertStrToNum(numStr) {
-    return numStr.replaceAll(/[\$|\,]/g, "");
+    return parseFloat(numStr.replaceAll(/[\$|\,]/g, ""));
 }
+// validate number input
+// function validateNumberInput(numStr) {
+//     console.log("200".match(/^(([0-9]{1,3}\,?)*[0-9]{3})$/));
+//     // return /^\+?(([0-9]*) | (([0-9]{1,3}\,?)+[0-9]{3})?)\.?[0-9]+([eE][-+]?[0-9]+)?$/.test(numStr);
+
+// }
 // update total back amount
-function updateBackAmount() {
+function updateBackAmount(newAmount) {
     let currentBackAmount = convertStrToNum(mainGraphBackedAmount.innerHTML);
+    currentBackAmount += newAmount;
     // // check if number reach limit
-    if (currentBackAmount == 99999) disableButton(backProjectButton);
+    if (currentBackAmount >= 100000) {
+        disableButton(backProjectButton);
+        document.querySelectorAll("button[class*='select']").forEach(btn => disableButton(btn));
+        currentBackAmount = 100000;
+    }
+    
 
     // covert and increase number
-    mainGraphBackedAmount.innerHTML = `$${(++currentBackAmount).toLocaleString()}`;
+    mainGraphBackedAmount.innerHTML = `$${(currentBackAmount).toLocaleString()}`;
     // display to progress bar
     displayProgressDone();
 }
@@ -52,6 +66,26 @@ function openModal(modalElement) {
 // close modal win
 function closeModal(modalElement) {
     modalElement.classList.add("close");
+}
+// open thank modal
+function openThankModal(currentModal = modalContent) {    
+    if (currentModal) closeModal(currentModal);
+    openModal(modalThank);
+}
+// close modal thank
+function closeThankModal(openModalAfter = null) {
+    // close modal thank 
+    closeModalThankIcon.addEventListener("click", event => {
+        closeModal(modalThank);
+        if (openModalAfter) openModal(openModalAfter);
+    });
+}
+// click continue button
+function clickContinue(event) {
+    openThankModal();
+    //event listener in function
+    closeThankModal();
+    updateBackAmount(parseFloat(event.target.parentElement.querySelector("input[type='number']").value))
 }
 // fetch items storage 
 async function fetchItems() {
@@ -87,7 +121,7 @@ async function addItems() {
                         <use href="#svg-dollar-sign"></use>
                     </svg>
                     </label>
-                    <input type="text" name="moneyInput${index}" id="money-item-${index}" value="${element["pledge"]}">
+                    <input type="number" name="moneyInput${index}" id="money-item-${index}" value="${element["pledge"]}" min="${element["pledge"]}">
                 </div>
                 <button class="main-content-items-subwin-continue">Continue</button>
           </div>
@@ -109,13 +143,12 @@ let clickRadioInput = event => {
     }
     else {
         // plege with not reward
-        closeModal(modalContent);
-        openModal(modalThank);
-        // remove other choices
+        openThankModal();
+        // remove all choices
         container.querySelectorAll(".main-content-items").forEach((otherItem, index) => {
             // uncheck other options (which has subwin)
-            if (index == 0) return;
-            otherItem.querySelector(".main-content-items-subwin").style.display = "none";
+            if (index != 0)
+                otherItem.querySelector(".main-content-items-subwin").style.display = "none";
             otherItem.querySelector("input[type='radio'").checked = false;
         });
     }
@@ -129,6 +162,9 @@ async function runModalWin() {
 
     // add select events
     document.querySelectorAll(".main-content-items-select").forEach(button => button.addEventListener("click", event => openModal(modalContent)));
+    
+    // add continue events
+    document.querySelectorAll(".main-content-items-subwin-continue").forEach(continueBtn => continueBtn.addEventListener("click", clickContinue));
 }
 // open a subwin
 async function openSubwin(item) {
@@ -148,8 +184,7 @@ backProjectButton.addEventListener("click", event => {
     updateBackNumber();
     openModal(modalThank);
 });
-// close modal thank 
-closeModalThankIcon.addEventListener("click", event => closeModal(modalThank));
+
 // click bookmark button
 bookmarkButton.addEventListener('click', event => {
     bookmarkButton.classList.toggle("tick");

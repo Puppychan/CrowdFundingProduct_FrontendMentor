@@ -432,7 +432,7 @@ body .main-content.modal .main-content-items-subwin-input label svg {
   height: 0.9em;
   fill: hsl(0deg, 0%, 48%);
 }
-body .main-content.modal .main-content-items-subwin-input input[type=text] {
+body .main-content.modal .main-content-items-subwin-input input[type=number] {
   width: 100%;
   padding: 1vw;
   border-radius: 12vw;
@@ -443,14 +443,14 @@ body .main-content.modal .main-content-items-subwin-input input[type=text] {
   border: 2px #ccc solid;
   padding: 1.1em 2.4em;
 }
-body .main-content.modal .main-content-items-subwin-input input[type=text]:hover {
+body .main-content.modal .main-content-items-subwin-input input[type=number]:hover {
   cursor: pointer;
 }
-body .main-content.modal .main-content-items-subwin-input input[type=text].disabled {
+body .main-content.modal .main-content-items-subwin-input input[type=number].disabled {
   background-color: #ccc;
   cursor: auto;
 }
-body .main-content.modal .main-content-items-subwin-input input[type=text]:focus {
+body .main-content.modal .main-content-items-subwin-input input[type=number]:focus {
   outline: none;
   border-color: hsl(176deg, 50%, 47%);
   caret-color: hsl(176deg, 50%, 47%);
